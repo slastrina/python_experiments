@@ -1,3 +1,5 @@
+import itertools
+import json
 import tempfile, os
 import zipfile
 
@@ -48,8 +50,20 @@ class MapObject():
     def driver_name(self):
         return self.driver.name
 
-    def get_sample_data(self):
-        pass
+    @property
+    def records(self):
+        """
+        Returns all rows in geojson format via a generator function
+        :return: generator outputting geojson dicts
+        :rtype: generator
+        """
+        layer = self.map.GetLayer(0)
+        for i in range(layer.GetFeatureCount()):
+            feature = layer.GetFeature(i)
+            yield json.loads(feature.ExportToJson())
+
+    def get_sample_data(self, rows: int = 1):
+        return itertools.islice(self.records, rows)
 
     def generate_metadata(self):
         pass
@@ -99,8 +113,6 @@ def discover_source(path: str):
 
 
 paths = discover_source('/Users/samuel.275320/Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip')
-for x in get_map_objects(paths):
-    print((x.fields))
-
-print(valid_formats)
-
+for map in get_map_objects(paths):
+    for record in map.get_sample_data():
+        print(json.dumps(record, indent=4))
