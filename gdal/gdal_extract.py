@@ -33,11 +33,13 @@ class MapObject():
         else:
             raise IOError(f'Invalid {self.path}')
 
-    def close(self):
-        self.map = None
-
     @property
     def fields(self):
+        """
+        Returns the field names for the given input
+        :return:
+        :rtype:
+        """
         layer = self.map.GetLayer()
         schema = []
         ldefn = layer.GetLayerDefn()
@@ -48,6 +50,11 @@ class MapObject():
 
     @property
     def driver_name(self):
+        """
+        Retrieves the driver name used to load the file
+        :return: The name of the driver
+        :rtype: str
+        """
         return self.driver.name
 
     @property
@@ -57,16 +64,37 @@ class MapObject():
         :return: generator outputting geojson dicts
         :rtype: generator
         """
-        layer = self.map.GetLayer(0)
+        layer = self.map.GetLayer()
         for i in range(layer.GetFeatureCount()):
             feature = layer.GetFeature(i)
             yield json.loads(feature.ExportToJson())
 
     def get_sample_data(self, rows: int = 1):
+        """
+        Returns a generator sliced with x number of records
+        :param rows:
+        :type rows:
+        :return:
+        :rtype:
+        """
         return itertools.islice(self.records, rows)
 
-    def generate_metadata(self):
-        pass
+    @property
+    def metadata(self):
+        return {
+            "filename": self.filename,
+            "file_extension": self.file_extension,
+            "driver": self.driver_name,
+            "path": self.source_name,
+            "fields": self.fields,
+            "rows": self.feature_count,
+            "sample": [sample['properties'] for sample in list(self.get_sample_data(2))]
+        }
+
+    @property
+    def feature_count(self):
+        layer = self.map.GetLayer()
+        return layer.GetFeatureCount()
 
 def get_map_objects(paths: list):
     """
@@ -111,8 +139,6 @@ def discover_source(path: str):
 
     return paths
 
-
-paths = discover_source('/Users/samuel.275320/Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip')
+paths = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip'))
 for map in get_map_objects(paths):
-    for record in map.get_sample_data():
-        print(json.dumps(record, indent=4))
+    print(json.dumps(map.metadata, indent=4))
