@@ -40,7 +40,7 @@ class MapObject():
         :return:
         :rtype:
         """
-        layer = self.map.GetLayer()
+        layer = self.map.GetLayer(0)
         schema = []
         ldefn = layer.GetLayerDefn()
         for n in range(ldefn.GetFieldCount()):
@@ -64,9 +64,9 @@ class MapObject():
         :return: generator outputting geojson dicts
         :rtype: generator
         """
-        layer = self.map.GetLayer()
+        layer = self.map.GetLayer(0)
         for i in range(layer.GetFeatureCount()):
-            feature = layer.GetFeature(i)
+            feature = layer.GetNextFeature()
             yield json.loads(feature.ExportToJson())
 
     def get_sample_data(self, rows: int = 1):
@@ -93,7 +93,7 @@ class MapObject():
 
     @property
     def feature_count(self):
-        layer = self.map.GetLayer()
+        layer = self.map.GetLayer(0)
         return layer.GetFeatureCount()
 
 def get_map_objects(paths: list):
@@ -139,6 +139,7 @@ def discover_source(path: str):
 
     return paths
 
-paths = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip'))
-for map in get_map_objects(paths):
+#path = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip'))
+path = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/SAHeritagePlacesPoly_GDA94_State.zip'))
+for map in get_map_objects(path):
     print(json.dumps(map.metadata, indent=4))
