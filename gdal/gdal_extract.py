@@ -139,7 +139,12 @@ def discover_source(path: str):
 
     return paths
 
-path = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/Australia World Heritage Areas.zip'))
+path = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/vhi.zip'))
 #path = discover_source(os.path.join(os.path.expanduser('~'),'Desktop/ELMS_Map_Files/SAHeritagePlacesPoly_GDA94_State.zip'))
 for map in get_map_objects(path):
     print(json.dumps(map.metadata, indent=4))
+
+
+    # data = list(map.get_sample_data(1))[0]
+    # for x in data:
+    #     print(x)
