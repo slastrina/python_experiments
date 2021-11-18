@@ -1,0 +1,52 @@
+{
+    "transactionId": "7ddf4ab0-405b-11ec-90d5-736c31258124",
+    "transactionTImestamp": "2021-11-12 10:15:51",
+    "operation": "statusChange",
+    "incident": "INC00123456789",
+    "status": "Completed",
+    "event": "bad_weather",
+    "emtActivatedTimestamp": "2021-11-11 19:13:26",
+    "fmeActivatedTimestamp": "2021-11-11 19:15:51",
+    "polygonDetails": {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": "sydney_impact_zone_1",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                136.93359375,
+                                -27.44979033
+                            ],
+                            [
+                                138.22998047,
+                                -27.29368922
+                            ],
+                            [
+                                138.36181641,
+                                -28.13012774
+                            ],
+                            [
+                                136.66992188,
+                                -28.3430649
+                            ],
+                            [
+                                136.93359375,
+                                -27.44979033
+                            ]
+                        ]
+                    ]
+                }
+            }
+        ],
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "urn:ogc:def:crs:EPSG::4283"
+            }
+        }
+    }
+}

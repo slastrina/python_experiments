@@ -1,3 +1,4 @@
 cx_Oracle
 python-dotenv
 geopandas
+geojson
