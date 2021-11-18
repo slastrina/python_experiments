@@ -1,0 +1,5 @@
+DB_HOSTNAME=db.blah.local
+DB_PORT=2484
+DB_SID=BLAH
+DB_USER=BLAH
+DB_PASS=SuperBlah
