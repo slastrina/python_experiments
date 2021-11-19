@@ -21,7 +21,7 @@ sas_projection = 4283
 
 regex_ = r".+::(\d+$)"
 
-with open('input.json') as f:
+with open('input_single_poly.json') as f:
     input_json = json.load(f)
 
 polygon_details = input_json['polygonDetails']

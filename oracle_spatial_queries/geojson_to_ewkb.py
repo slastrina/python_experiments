@@ -10,7 +10,7 @@ regex_ = r".+::(\d+$)"
 elms_projection = 3112
 sas_projection = 4283
 
-with open('input.json') as f:
+with open('input_multi_poly.json') as f:
     input_json = json.load(f)
 
 polygon_details = input_json['polygonDetails']

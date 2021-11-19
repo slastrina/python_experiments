@@ -1,0 +1,79 @@
+{
+    "transactionId": "7ddf4ab0-405b-11ec-90d5-736c31258124",
+    "transactionTimestamp": "2021-11-12 10:15:51",
+    "operation": "declareFME",
+    "incident": "INC000014556065",
+    "status": "Assigned",
+    "event": "vic_bushfire",
+    "emtActivatedTimestamp": "2021-11-11 19:13:26",
+    "fmeActivatedTimestamp": "2021-11-11 19:15:51",
+    "polygonDetails": {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "id": "4f9f74f2_17d0ba4db04_-7ffe",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                136.93359375,
+                                -27.44979033
+                            ],
+                            [
+                                138.22998047,
+                                -27.29368922
+                            ],
+                            [
+                                138.36181641,
+                                -28.13012774
+                            ],
+                            [
+                                136.66992188,
+                                -28.3430649
+                            ],
+                            [
+                                136.93359375,
+                                -27.44979033
+                            ]
+                        ]
+                    ]
+                }
+            },
+            {
+                "type": "Feature",
+                "id": "4d30ac79_17d204ca68a_-7e94",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [
+                                132.67061134,
+                                -17.02833702
+                            ],
+                            [
+                                132.51294353,
+                                -17.8717914
+                            ],
+                            [
+                                132.02801021,
+                                -18.59286162
+                            ],
+                            [
+                                131.2867692,
+                                -19.07989154
+                            ]
+                        ]
+                    ]
+                }
+            }
+        ],
+        "crs": {
+            "type": "name",
+            "properties": {
+                "name": "urn:ogc:def:crs:EPSG::4283"
+            }
+        }
+    }
+}
