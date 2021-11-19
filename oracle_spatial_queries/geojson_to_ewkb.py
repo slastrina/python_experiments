@@ -14,7 +14,6 @@ with open('input_multi_poly.json') as f:
     input_json = json.load(f)
 
 polygon_details = input_json['polygonDetails']
-# geojson_obj = geojson.loads(json.dumps(polygon_details))
 
 # Note: geojson doesnt support crs anymore, deprecated as of 2016 geojson rfc https://datatracker.ietf.org/doc/html/rfc7946
 # See sections B.1: https://datatracker.ietf.org/doc/html/rfc7946#appendix-B.1
