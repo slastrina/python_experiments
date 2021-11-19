@@ -1,10 +1,10 @@
 import csv
 import json
-from shapely import wkb
-import geojson
-from shapely.geometry import shape, GeometryCollection
-
 import re
+
+from shapely import wkb
+from shapely.geometry import shape
+
 regex_ = r".+::(\d+$)"
 
 elms_projection = 3112
