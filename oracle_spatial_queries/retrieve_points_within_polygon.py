@@ -1,7 +1,6 @@
 import os
-import json
-import geojson
 from shapely.geometry import shape
+import json
 
 from timeit import default_timer as timer
 
