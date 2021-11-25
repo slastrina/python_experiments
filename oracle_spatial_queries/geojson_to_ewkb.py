@@ -1,6 +1,7 @@
 import csv
 import json
 import re
+from datetime import datetime
 
 from shapely import wkb
 from shapely.geometry import shape
@@ -27,13 +28,15 @@ print(polygon_details)
 # features = GeometryCollection([shape(feature["geometry"]).buffer(0) for feature in geojson_obj['features']])
 # print(features)
 
+timestamp = datetime.now().strftime("%Y/%m/%d, %H:%M:%S")
+
 with open('test_ewkb.csv', "w") as fl:
     writer = csv.writer(fl, delimiter=",", lineterminator="\n")
     firstRow = True
     for f in polygon_details['features']:
         try:
             if firstRow:
-                writer.writerow(['geom', 'type', 'id'])
+                writer.writerow(['transaction_timestamp', 'event_id', 'polygon_id', 'geometry_type', 'geometry'])
                 firstRow = False
 
             if f["geometry"]:
@@ -45,7 +48,7 @@ with open('test_ewkb.csv', "w") as fl:
                     t = r*m
                     g = o.simplify(t)
                     m = m * 10
-                writer.writerow([wkb.dumps(g, hex=True, srid=int(input_crs)), f['geometry']['type'], f['id']])
+                writer.writerow([timestamp, input_json['event'], f['id'], f['geometry']['type'], wkb.dumps(g, hex=True, srid=int(input_crs))])
         except Exception:
             print(f"Error processing feature {f['id']}")
             raise
